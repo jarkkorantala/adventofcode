@@ -1,6 +1,7 @@
 import click
 import logging
 import sys
+from typing import Generator
 
 logger = logging.getLogger()
 handler = logging.StreamHandler(sys.stdout)
@@ -11,6 +12,15 @@ handler.setFormatter(
 )
 logger.addHandler(handler)
 logger.setLevel(logging.INFO)
+
+
+def input_iter(input_path: str) -> Generator[str, None, None]:
+    with open(input_path, "r") as fp:
+        while True:
+            line = fp.readline().strip()
+            if line == "":
+                break
+            yield line
 
 
 @click.group("adventofcode")

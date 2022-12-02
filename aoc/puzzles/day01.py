@@ -6,7 +6,7 @@ from ..cli import cli, logger
 def build_elf_heap(input_path: str) -> list:
     fp = open(input_path, "r")
     elf_carries = 0
-    elf_heap: list[int]  = []
+    elf_heap: list[int] = []
     while True:
         line = fp.readline()
         if "\n" not in line:
