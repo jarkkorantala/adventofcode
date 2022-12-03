@@ -17,10 +17,10 @@ logger.setLevel(logging.INFO)
 def input_iter(input_path: str) -> Generator[str, None, None]:
     with open(input_path, "r") as fp:
         while True:
-            line = fp.readline().strip()
-            if line == "":
+            line = fp.readline()
+            if "\n" not in line:
                 break
-            yield line
+            yield line.strip()
 
 
 @click.group("adventofcode")

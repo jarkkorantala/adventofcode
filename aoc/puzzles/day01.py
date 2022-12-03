@@ -1,18 +1,14 @@
 import click
 import heapq
-from ..cli import cli, logger
+from ..cli import cli, input_iter, logger
 
 
 def build_elf_heap(input_path: str) -> list:
-    fp = open(input_path, "r")
     elf_carries = 0
     elf_heap: list[int] = []
-    while True:
-        line = fp.readline()
-        if "\n" not in line:
-            break
+    for line in input_iter(input_path):
         try:
-            elf_carries += int(line.strip())
+            elf_carries += int(line)
         except Exception:
             logger.debug(f"{elf_carries!r}")
             heapq.heappush(elf_heap, elf_carries)
